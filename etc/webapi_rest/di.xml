@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Inside the webapi_rest area only, route UserContextInterface through
+         our MCP-aware context. It falls back to the stock TokenUserContext
+         when no MCP request is in flight, so normal REST keeps working. -->
+    <preference for="Magento\Authorization\Model\UserContextInterface"
+                type="WisWes\MCP\Model\Auth\McpUserContext"/>
+
+    <type name="WisWes\MCP\Model\Auth\McpUserContext">
+        <arguments>
+            <argument name="fallback" xsi:type="object">Magento\Webapi\Model\Authorization\TokenUserContext\Proxy</argument>
+        </arguments>
+    </type>
+</config>

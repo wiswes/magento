@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="wiswes_install" frontName="wiswes_install">
+            <module name="WisWes_MCP" before="Magento_Backend"/>
+        </route>
+        <route id="wiswes_push" frontName="wiswes_push">
+            <module name="WisWes_MCP" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>

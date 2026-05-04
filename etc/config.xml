@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wiswes_mcp>
+            <server>
+                <!-- Daemon host/port/prefix were dropped — the MCP server runs
+                     on demand inside Magento at frontName "mcp" (see Controller/Index/Index.php).
+                     Only `name` is still read, by the controller, when announcing
+                     the server name in the JSON-RPC initialize response. -->
+                <name>WisWes Chat MCP</name>
+            </server>
+            <tools>
+                <!-- Comma-separated glob list of tool names to expose. * = all curated tools. -->
+                <include>*</include>
+            </tools>
+            <install>
+                <!-- Base URL of the WisWes dashboard. The Install controller appends
+                     /connect/magento and the install_token query string. Override
+                     this from Stores → Configuration → WisWes Chat → MCP Connection
+                     for dev/staging environments. -->
+                <wiswes_url>https://api.wiswes.com/</wiswes_url>
+            </install>
+            <auth>
+                <!-- Shared secret minted on Install: a long random string the
+                     dashboard receives during the handshake and sends back on
+                     every MCP call as `Authorization: Bearer <secret>`. Stored
+                     encrypted via EncryptorInterface (the install controller
+                     encrypts before writing; the resolver decrypts on read).
+                     `admin_id` is the Magento admin user whose context the MCP
+                     middleware switches to when the shared secret matches —
+                     captured at install time so ACL stays scoped to a real
+                     admin instead of a synthetic super-user. -->
+                <shared_secret></shared_secret>
+                <admin_id>0</admin_id>
+            </auth>
+        </wiswes_mcp>
+        <!-- wiswes_widget keeps no defaults: the embed snippet is pasted into
+             Magento's native HTML-head config, not stored by this extension.
+             The admin page only renders an "Install with WisWes" button. -->
+        <wiswes_widget>
+            <general/>
+        </wiswes_widget>
+    </default>
+</config>

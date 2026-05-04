@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+
+    <!-- Refresh chat-widget-context whenever the cart or customer state
+         could have changed, so window.CHAT_WIDGET_CONFIG.quoteId stays in
+         sync with what the storefront sees. Magento auto-bumps cart on
+         these routes; we piggyback on the same triggers. -->
+    <action name="checkout/cart/add">
+        <section name="chat-widget-context"/>
+    </action>
+    <action name="checkout/cart/delete">
+        <section name="chat-widget-context"/>
+    </action>
+    <action name="checkout/cart/updatePost">
+        <section name="chat-widget-context"/>
+    </action>
+    <action name="checkout/onepage/saveOrder">
+        <section name="chat-widget-context"/>
+    </action>
+    <action name="customer/account/loginPost">
+        <section name="chat-widget-context"/>
+    </action>
+    <action name="customer/account/logout">
+        <section name="chat-widget-context"/>
+    </action>
+    <action name="customer/account/createPost">
+        <section name="chat-widget-context"/>
+    </action>
+</config>

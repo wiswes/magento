@@ -1,0 +1,63 @@
+<?php
+declare(strict_types=1);
+
+/** @var \WisWes\MCP\Block\WidgetConfig $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$cacheable = $block->isPageCacheable();
+
+// Inline values are only safe when the page itself is NOT cached. On a
+// cached HTML response the values would be frozen at first-render time
+// and shown to every visitor — instead we leave the inline init empty
+// and let the JS snippet pull live values out of the customer-data
+// section (which Magento serves from a hole-punched, per-session source).
+$inlineQuoteId          = !$cacheable ? $block->getQuoteId()          : 0;
+$inlineCustomerId       = !$cacheable ? $block->getCustomerId()       : 0;
+$inlineCustomerName     = !$cacheable ? $block->getCustomerName()     : '';
+$inlineCustomerSig      = !$cacheable ? $block->getCustomerSignature() : '';
+?>
+<script>
+window.CHAT_WIDGET_CONFIG = window.CHAT_WIDGET_CONFIG || {};
+<?php if (!$cacheable): ?>
+// Page is not full-page cached — safe to bake live session ids into the
+// HTML so the widget's first request already carries them.
+Object.assign(window.CHAT_WIDGET_CONFIG, {
+    quoteId: <?= $inlineQuoteId > 0 ? (int) $inlineQuoteId : 'null' ?>,
+    customerId: <?= (int) $inlineCustomerId ?>,
+    customerName: <?= json_encode($inlineCustomerName, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>,
+    customerSignature: <?= json_encode($inlineCustomerSig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
+});
+<?php endif; ?>
+
+// Cached pages reach this branch with quoteId still null/missing — pull
+// the live values from the chat-widget-context customer-data section.
+// On non-cached pages the inline block above already set them, so this
+// is a no-op (the `==null` guards skip overwriting). Subscribing keeps
+// quoteId fresh after later cart actions made via Magento UI (not chat).
+require(['Magento_Customer/js/customer-data'], function (customerData) {
+    var section = customerData.get('chat-widget-context');
+    function applyFromSection() {
+        var data = section();
+        if (!data) { return; }
+        if (window.CHAT_WIDGET_CONFIG.quoteId == null && data.quote_id) {
+            window.CHAT_WIDGET_CONFIG.quoteId = data.quote_id;
+        }
+        if (!window.CHAT_WIDGET_CONFIG.customerId && data.customer_id) {
+            window.CHAT_WIDGET_CONFIG.customerId = data.customer_id;
+        }
+        if (!window.CHAT_WIDGET_CONFIG.customerName && data.customer_name) {
+            window.CHAT_WIDGET_CONFIG.customerName = data.customer_name;
+        }
+        // The signature MUST track the section even if a stale value is
+        // already cached client-side: a logout invalidates the section and
+        // re-emits an empty string, which we want to overwrite the prior
+        // signed token with so we don't keep authenticating as the
+        // logged-out customer. Same for re-login as a different user.
+        if (typeof data.customer_signature === 'string') {
+            window.CHAT_WIDGET_CONFIG.customerSignature = data.customer_signature;
+        }
+    }
+    section.subscribe(applyFromSection);
+    applyFromSection();
+});
+</script>

@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Singletons that survive across tool calls within one MCP server process. -->
+    <type name="WisWes\MCP\Model\Auth\RequestContext" shared="true"/>
+    <type name="WisWes\MCP\Model\Auth\McpUserContext" shared="true"/>
+
+    <!-- PSR-11 bridge so php-mcp/server resolves tool handlers through Magento's
+         ObjectManager. Without this, BasicContainer's reflection auto-wiring
+         can't construct interfaces like ProductRepositoryInterface or
+         ObjectManagerInterface and every tool call fails. -->
+    <type name="WisWes\MCP\Service\MagentoMcpContainer">
+        <arguments>
+            <argument name="objectManager" xsi:type="object">Magento\Framework\ObjectManagerInterface</argument>
+        </arguments>
+    </type>
+
+    <!-- Replace the default REST token user context with our MCP-aware one
+         when running inside the MCP server process. We do NOT add a global
+         preference for UserContextInterface — that would affect every area.
+         Instead, the dispatcher injects McpUserContext directly. -->
+
+    <!-- ProductFilterTool's constructor type-hints the parent
+         Catalog\Product\CollectionFactory because the search-aware factory is
+         a Magento virtualType (no PHP class to reflect on). Inject the actual
+         search virtualType here so the tool runs against the fulltext index. -->
+    <type name="WisWes\MCP\Mcp\Tool\Catalog\ProductFilterTool">
+        <arguments>
+            <argument name="searchCollectionFactory" xsi:type="object">Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory</argument>
+        </arguments>
+    </type>
+
+    <!-- See RequestGeneratorPlugin for context: forces every is_filterable
+         attribute to be usable as a filter in quick_search_container too,
+         so product-filter applies attribute filters AND phrase together. -->
+    <type name="Magento\CatalogSearch\Model\Search\RequestGenerator">
+        <plugin name="wiswes_mcp_request_generator_promote_filters"
+                type="WisWes\MCP\Plugin\Search\RequestGeneratorPlugin"/>
+    </type>
+
+    <!-- Hand-written, MCP-specific tools live under \WisWes\MCP\Mcp\Tool\*.
+         Add new ones here to expose them to the LLM. -->
+    <type name="WisWes\MCP\Service\McpServerBuilder">
+        <arguments>
+            <argument name="stateCache" xsi:type="object">WisWes\MCP\Model\Cache\MagentoPsrCache</argument>
+            <argument name="customTools" xsi:type="array">
+                <!-- Catalog -->
+                <item name="product_get"             xsi:type="object">WisWes\MCP\Mcp\Tool\Catalog\ProductGetTool</item>
+                <item name="product_filter"          xsi:type="object">WisWes\MCP\Mcp\Tool\Catalog\ProductFilterTool</item>
+                <item name="product_filter_options"  xsi:type="object">WisWes\MCP\Mcp\Tool\Catalog\ProductFilterOptionsTool</item>
+                <item name="category_list"           xsi:type="object">WisWes\MCP\Mcp\Tool\Catalog\CategoryListTool</item>
+                <!-- Customer -->
+                <item name="customer_create"         xsi:type="object">WisWes\MCP\Mcp\Tool\Customer\CustomerCreateTool</item>
+                <item name="customer_info"           xsi:type="object">WisWes\MCP\Mcp\Tool\Customer\CustomerInfoTool</item>
+                <item name="customer_address_list"   xsi:type="object">WisWes\MCP\Mcp\Tool\Customer\CustomerAddressListTool</item>
+                <item name="customer_update"         xsi:type="object">WisWes\MCP\Mcp\Tool\Customer\CustomerUpdateTool</item>
+                <item name="customer_address_update" xsi:type="object">WisWes\MCP\Mcp\Tool\Customer\CustomerAddressUpdateTool</item>
+                <item name="customer_address_remove" xsi:type="object">WisWes\MCP\Mcp\Tool\Customer\CustomerAddressRemoveTool</item>
+                <!-- Cart -->
+                <item name="cart_info"               xsi:type="object">WisWes\MCP\Mcp\Tool\Cart\CartInfoTool</item>
+                <item name="cart_add"                xsi:type="object">WisWes\MCP\Mcp\Tool\Cart\CartAddTool</item>
+                <item name="cart_update"             xsi:type="object">WisWes\MCP\Mcp\Tool\Cart\CartUpdateTool</item>
+                <item name="cart_remove"             xsi:type="object">WisWes\MCP\Mcp\Tool\Cart\CartRemoveTool</item>
+                <!-- Checkout -->
+                <item name="checkout_set_address"        xsi:type="object">WisWes\MCP\Mcp\Tool\Checkout\CheckoutSetAddressTool</item>
+                <item name="checkout_shipping_methods"   xsi:type="object">WisWes\MCP\Mcp\Tool\Checkout\CheckoutShippingMethodsTool</item>
+                <item name="checkout_payment_methods"    xsi:type="object">WisWes\MCP\Mcp\Tool\Checkout\CheckoutPaymentMethodsTool</item>
+                <item name="checkout_place_order"        xsi:type="object">WisWes\MCP\Mcp\Tool\Checkout\CheckoutPlaceOrderTool</item>
+                <!-- Sales -->
+                <item name="order_info"              xsi:type="object">WisWes\MCP\Mcp\Tool\Sales\OrderInfoTool</item>
+                <item name="order_update"            xsi:type="object">WisWes\MCP\Mcp\Tool\Sales\OrderUpdateTool</item>
+                <!-- Wishlist -->
+                <item name="wishlist_items"          xsi:type="object">WisWes\MCP\Mcp\Tool\Wishlist\WishlistItemsTool</item>
+                <item name="wishlist_add_item"       xsi:type="object">WisWes\MCP\Mcp\Tool\Wishlist\WishlistAddItemTool</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- No CLI daemon command. The MCP server runs on demand inside Magento via
+         the HTTP controller at frontName "mcp" (WisWes\MCP\Controller\Index\Index).
+         Each /mcp request boots one in-process server, processes a single
+         JSON-RPC frame, and returns. No long-running process to babysit. -->
+
+    <!-- Register the catalogue-push CLI so operators can run a sync from the
+         shell: `bin/magento wiswes:products:push`. The cron job and the
+         admin button delegate to the same ChatAgentPushService. -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="wiswes_mcp_push_products" xsi:type="object">WisWes\MCP\Console\Command\PushProductsCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Indexer that pushes the catalogue snapshot to chat_agent (WisWes) for
+  vector indexing. Surfaces under System → Index Management so admins can
+  reindex / set "Update by Schedule" through the standard Magento UI.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="wiswes_product_push"
+             view_id="wiswes_product_push"
+             class="WisWes\MCP\Model\Indexer\ProductPushIndexer">
+        <title translate="true">WisWes Product Catalogue Push</title>
+        <description translate="true">Pushes enabled, catalog-visible products to WisWes for vector indexing.</description>
+    </indexer>
+</config>

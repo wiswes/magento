@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Inject the chat widget config initialiser before any operator-
+             pasted <script src="…/embed.js"> tag. The embed merges its
+             defaults onto window.CHAT_WIDGET_CONFIG, so this block must
+             run first. Placed in `before.body.end` (a high-priority spot
+             present in default Magento themes) so it loads after the
+             RequireJS bootstrap (needed by the customer-data fetch). -->
+        <referenceContainer name="before.body.end">
+            <block class="WisWes\MCP\Block\WidgetConfig"
+                   name="wiswes.widget.config"
+                   template="WisWes_MCP::widget-config.phtml"
+                   before="-"/>
+        </referenceContainer>
+    </body>
+</page>

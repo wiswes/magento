@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- Admin labels read "WisWes Chat" everywhere customer-facing. The
+             section / group IDs (wiswes_widget/general) stay as-is so existing
+             Magento config rows aren't orphaned. The label is just what
+             merchants see. -->
+        <tab id="wiswes" translate="label" sortOrder="400">
+            <label>WisWes Chat</label>
+        </tab>
+        <section id="wiswes_widget" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>WisWes Chat Widget</label>
+            <tab>wiswes</tab>
+            <resource>WisWes_MCP::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Install</label>
+                <comment><![CDATA[
+                    The widget is just a single &lt;script&gt; tag. Use the Install button below to set it up through WisWes,
+                    <strong>or</strong> paste the snippet directly into Magento's native script areas — for example:
+                    <em>Stores → Configuration → Design → HTML Head → Scripts and Style Sheets</em>, or
+                    <code>default_head_blocks.xml</code> in your theme. The extension does not own the snippet
+                    or store it in Magento's config — your install path stays identical to Shopify or any
+                    custom storefront.
+                ]]></comment>
+                <field id="install" translate="label comment" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Install</label>
+                    <frontend_model>WisWes\MCP\Block\Adminhtml\InstallButton</frontend_model>
+                    <comment><![CDATA[Opens WisWes in a new tab. Sign up or sign in, pick a plan, and copy the embed snippet WisWes hands you back into Magento's HTML Head config.]]></comment>
+                </field>
+            </group>
+        </section>
+        <section id="wiswes_mcp" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>WisWes Chat MCP</label>
+            <tab>wiswes</tab>
+            <resource>WisWes_MCP::config</resource>
+            <group id="install" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Connection</label>
+                <field id="wiswes_url" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WisWes Dashboard URL</label>
+                    <comment><![CDATA[Base URL of the WisWes dashboard the Install button redirects to. The handshake path (<code>/connect/magento</code>) is appended automatically. Default: <code>https://api.wiswes.com/</code>. Override for staging or self-hosted dashboards.]]></comment>
+                </field>
+            </group>
+            <group id="catalog" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Catalogue Sync</label>
+                <comment><![CDATA[
+                    WisWes serves product search out of its own vector index, populated from this Magento store. The push runs nightly at 03:00 by default; click the button below to push immediately after a bulk catalogue change.
+                ]]></comment>
+                <field id="push" translate="label comment" type="button" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Push catalogue now</label>
+                    <frontend_model>WisWes\MCP\Block\Adminhtml\PushButton</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

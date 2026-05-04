@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Pre-fills the guest shipping form fields from the saved
+             quote address that GuestQuoteAddressConfigProvider exposes
+             via window.checkoutConfig.shippingAddressFromData. Required
+             because Magento's stock guest checkout doesn't propagate
+             server-side address data into per-field KO observables.
+             See WisWes_MCP/js/guest-address-prefill.js for details. -->
+        <script src="WisWes_MCP/js/guest-address-prefill.js"/>
+    </head>
+</page>

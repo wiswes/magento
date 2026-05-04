@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Register the chat-widget-context customer-data section so the JS
+         snippet rendered by Block\WidgetConfig can read live cart/customer
+         info on cached pages. -->
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <arguments>
+            <argument name="sectionSourceMap" xsi:type="array">
+                <item name="chat-widget-context" xsi:type="string">WisWes\MCP\CustomerData\ChatWidgetContext</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- For guest carts, expose the saved quote shipping/billing address into
+         window.checkoutConfig so the /checkout KO form pre-fills. Stock
+         Magento only emits shippingAddressFromData for logged-in customers
+         (from their address book), so addresses the chat agent sets via
+         ShippingInformationManagement land in `quote_address` but never
+         reach the form's data binding for guests. -->
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="wiswes_guest_quote_address" xsi:type="object">WisWes\MCP\Model\GuestQuoteAddressConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

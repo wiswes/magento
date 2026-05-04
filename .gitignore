@@ -1,0 +1,12 @@
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# PHP CS Fixer cache
+.php-cs-fixer.cache
+
+# Composer artifacts (this dir IS the package — vendor/ should never live inside it)
+/vendor/
+/composer.lock
