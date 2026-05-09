@@ -28,7 +28,8 @@ class BearerTokenMiddleware
 {
     public function __construct(
         private readonly RequestContext $requestContext,
-    ) {}
+    ) {
+    }
 
     public function __invoke(ServerRequestInterface $request, callable $next): mixed
     {

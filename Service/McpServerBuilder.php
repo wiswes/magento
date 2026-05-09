@@ -40,7 +40,8 @@ class McpServerBuilder
         private readonly MagentoMcpContainer $container,
         private readonly ?CacheInterface $stateCache = null,
         private readonly array $customTools = [],
-    ) {}
+    ) {
+    }
 
     public function buildTransport(string $host, int $port, string $prefix): BearerTokenCapturingTransport
     {

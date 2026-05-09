@@ -23,7 +23,8 @@ class GuestQuoteAddressConfigProvider implements ConfigProviderInterface
 {
     public function __construct(
         private readonly CheckoutSession $checkoutSession,
-    ) {}
+    ) {
+    }
 
     public function getConfig(): array
     {

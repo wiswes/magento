@@ -25,7 +25,8 @@ class CheckoutSetAddressTool
         private readonly GuestShippingInformationManagementInterface $guestShippingInfoManagement,
         private readonly AddressInterfaceFactory $addressFactory,
         private readonly ShippingInformationInterfaceFactory $shippingInfoFactory,
-    ) {}
+    ) {
+    }
 
     /**
      * @param string[]|null $street

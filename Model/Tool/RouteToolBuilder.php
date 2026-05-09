@@ -25,7 +25,8 @@ class RouteToolBuilder
         private readonly SchemaBuilder $schemaBuilder,
         private readonly ServiceContractDispatcher $dispatcher,
         private readonly LoggerInterface $logger,
-    ) {}
+    ) {
+    }
 
     /** @return list<RouteToolDefinition> */
     public function build(): array

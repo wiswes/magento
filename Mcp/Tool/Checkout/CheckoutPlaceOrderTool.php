@@ -27,7 +27,8 @@ class CheckoutPlaceOrderTool
         private readonly GuestPaymentInformationManagementInterface $guestPaymentInformation,
         private readonly PaymentInterfaceFactory $paymentFactory,
         private readonly OrderRepositoryInterface $orderRepository,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

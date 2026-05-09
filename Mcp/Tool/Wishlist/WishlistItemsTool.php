@@ -12,7 +12,8 @@ class WishlistItemsTool
     public function __construct(
         private readonly WishlistFactory $wishlistFactory,
         private readonly UserContextInterface $userContext,
-    ) {}
+    ) {
+    }
 
     /** @return array{customer_id: int, items: list<array<string, mixed>>} */
     #[McpTool(

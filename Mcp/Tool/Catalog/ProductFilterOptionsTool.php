@@ -12,7 +12,8 @@ class ProductFilterOptionsTool
     public function __construct(
         private readonly ProductAttributeRepositoryInterface $attributeRepository,
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
-    ) {}
+    ) {
+    }
 
     private const MAX_OPTIONS_PER_ATTRIBUTE = 10;
 

@@ -17,7 +17,8 @@ class CustomerInfoTool
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
         private readonly CustomerScopeResolver $scopeResolver,
         private readonly AddressFormatter $addressFormatter,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

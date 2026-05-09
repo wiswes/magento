@@ -34,7 +34,8 @@ class TokenUserContextResolver
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly EncryptorInterface $encryptor,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array{0:int,1:int}|null [userType, userId] or null when the bearer is missing/wrong

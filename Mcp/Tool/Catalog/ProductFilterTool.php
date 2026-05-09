@@ -27,7 +27,8 @@ class ProductFilterTool
         private readonly Visibility $visibility,
         private readonly ConfigurableType $configurableType,
         private readonly EavConfig $eavConfig,
-    ) {}
+    ) {
+    }
 
     /**
      * @param array<int, array{field: string, value: mixed}> $filters

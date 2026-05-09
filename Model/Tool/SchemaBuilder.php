@@ -23,7 +23,8 @@ class SchemaBuilder
     public function __construct(
         private readonly MethodsMap $methodsMap,
         private readonly TypeProcessor $typeProcessor,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array{type: 'object', properties: array<string, array>, required: list<string>}

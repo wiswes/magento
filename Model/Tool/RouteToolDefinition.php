@@ -21,5 +21,6 @@ class RouteToolDefinition
         public readonly string $description,
         public readonly array $inputSchema,
         public readonly mixed $handler,
-    ) {}
+    ) {
+    }
 }

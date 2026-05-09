@@ -52,7 +52,8 @@ class ChatAgentPushService
         private readonly ResourceConnection $resource,
         private readonly StoreManagerInterface $storeManager,
         private readonly LoggerInterface $logger,
-    ) {}
+    ) {
+    }
 
     /**
      * Push the catalogue. Returns counters:

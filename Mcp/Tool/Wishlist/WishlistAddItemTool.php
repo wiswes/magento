@@ -15,7 +15,8 @@ class WishlistAddItemTool
         private readonly WishlistFactory $wishlistFactory,
         private readonly ProductRepositoryInterface $productRepository,
         private readonly UserContextInterface $userContext,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

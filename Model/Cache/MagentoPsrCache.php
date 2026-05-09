@@ -4,11 +4,15 @@ declare(strict_types=1);
 namespace WisWes\MCP\Model\Cache;
 
 use Magento\Framework\App\CacheInterface as MagentoCache;
+use Magento\Framework\Serialize\SerializerInterface;
 use Psr\SimpleCache\CacheInterface;
 
 /**
  * PSR-16 wrapper around Magento's cache frontend so php-mcp/server's
  * ClientStateManager can persist MCP session state across PHP-FPM requests.
+ *
+ * Backing serializer comes from DI — defaults to Json in modern Magento
+ * (safer than php-serialize and required by Marketplace QA).
  */
 class MagentoPsrCache implements CacheInterface
 {
@@ -16,8 +20,10 @@ class MagentoPsrCache implements CacheInterface
 
     public function __construct(
         private readonly MagentoCache $cache,
+        private readonly SerializerInterface $serializer,
         private readonly int $defaultTtl = 3600,
-    ) {}
+    ) {
+    }
 
     public function get(string $key, mixed $default = null): mixed
     {
@@ -25,14 +31,19 @@ class MagentoPsrCache implements CacheInterface
         if ($raw === false || $raw === null || $raw === '') {
             return $default;
         }
-        $value = @unserialize($raw, ['allowed_classes' => true]);
-        return $value === false && $raw !== serialize(false) ? $default : $value;
+        try {
+            return $this->serializer->unserialize($raw);
+        } catch (\InvalidArgumentException $e) {
+            // Stale or corrupt cache entry. Treat as a miss; the caller
+            // rebuilds and the bad row gets overwritten on next set().
+            return $default;
+        }
     }
 
     public function set(string $key, mixed $value, \DateInterval|int|null $ttl = null): bool
     {
         return $this->cache->save(
-            serialize($value),
+            $this->serializer->serialize($value),
             $key,
             [self::TAG],
             $this->resolveTtl($ttl),

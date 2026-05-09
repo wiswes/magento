@@ -31,7 +31,8 @@ class MagentoMcpContainer implements ContainerInterface
 
     public function __construct(
         private readonly ObjectManagerInterface $objectManager,
-    ) {}
+    ) {
+    }
 
     public function set(string $id, object $instance): void
     {

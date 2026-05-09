@@ -32,7 +32,8 @@ class ProductPushIndexer implements IndexerActionInterface, MviewActionInterface
         private readonly ChatAgentPushService $pushService,
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly LoggerInterface $logger,
-    ) {}
+    ) {
+    }
 
     public function executeFull(): void
     {

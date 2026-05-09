@@ -18,7 +18,8 @@ class OrderInfoTool
         private readonly ShipmentRepositoryInterface $shipmentRepository,
         private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
         private readonly McpUserContext $userContext,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

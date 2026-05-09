@@ -25,7 +25,8 @@ class CheckoutShippingMethodsTool
         private readonly ShippingMethodManagementInterface $shippingMethodManagement,
         private readonly GuestShippingMethodManagementInterface $guestShippingMethodManagement,
         private readonly EstimateAddressInterfaceFactory $estimateAddressFactory,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

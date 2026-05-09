@@ -36,7 +36,8 @@ class ServiceContractDispatcher
         private readonly ServiceInputProcessor $inputProcessor,
         private readonly MethodsMap $methodsMap,
         private readonly McpUserContext $userContext,
-    ) {}
+    ) {
+    }
 
     /**
      * @param class-string         $serviceClass

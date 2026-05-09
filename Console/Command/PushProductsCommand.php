@@ -34,7 +34,11 @@ class PushProductsCommand extends Command
     {
         // Many catalogue calls fail without an area code (URL builder, store
         // resolution, etc.) — match cron's "crontab" area.
-        try { $this->appState->setAreaCode(Area::AREA_CRONTAB); } catch (\Throwable) {}
+        try {
+            $this->appState->setAreaCode(Area::AREA_CRONTAB);
+        } catch (\Throwable) {
+
+        }
 
         try {
             $totals = $this->pushService->push();

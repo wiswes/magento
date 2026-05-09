@@ -15,7 +15,8 @@ class CategoryListTool
         private readonly CategoryRepositoryInterface $categoryRepository,
         private readonly CollectionFactory $collectionFactory,
         private readonly StoreManagerInterface $storeManager,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array{categories: list<array<string, mixed>>}

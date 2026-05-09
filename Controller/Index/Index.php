@@ -38,11 +38,16 @@ class Index implements HttpPostActionInterface, CsrfAwareActionInterface
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly Random $random,
         private readonly LoggerInterface $logger,
-    ) {}
+    ) {
+    }
 
     public function execute(): ResultInterface
     {
-        try { $this->appState->setAreaCode('webapi_rest'); } catch (\Throwable) {}
+        try {
+            $this->appState->setAreaCode('webapi_rest');
+        } catch (\Throwable) {
+
+        }
 
         $auth = (string) ($this->request->getHeader('Authorization') ?: '');
         if (stripos($auth, 'Bearer ') === 0) {
@@ -102,6 +107,12 @@ class Index implements HttpPostActionInterface, CsrfAwareActionInterface
         return json_encode($response->toArray(), JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 
-    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException { return null; }
-    public function validateForCsrf(RequestInterface $request): ?bool { return true; }
+    public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
+    {
+        return null;
+    }
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
 }

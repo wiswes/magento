@@ -16,7 +16,8 @@ class CustomerCreateTool
         private readonly CustomerInterfaceFactory $customerFactory,
         private readonly StoreManagerInterface $storeManager,
         private readonly CustomerTokenServiceInterface $customerTokenService,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

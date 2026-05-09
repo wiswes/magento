@@ -21,7 +21,8 @@ class RouteResolver
 
     public function __construct(
         private readonly WebapiConfig $webapiConfig,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array{

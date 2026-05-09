@@ -30,7 +30,8 @@ class CartAddTool
         private readonly CartInfoTool $cartInfoTool,
         private readonly ProductRepositoryInterface $productRepository,
         private readonly ConfigurableType $configurableType,
-    ) {}
+    ) {
+    }
 
     /**
      * Note the docblock types `object|null` for $options instead of
@@ -129,7 +130,10 @@ DESC
 
         return sprintf(
             "cart-add failed for SKU '%s' (type: %s): %s. %s",
-            $sku, $type, $e->getMessage(), $shape
+            $sku,
+            $type,
+            $e->getMessage(),
+            $shape
         );
     }
 

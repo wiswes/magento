@@ -16,7 +16,8 @@ class CustomerAddressUpdateTool
         private readonly RegionInterfaceFactory $regionFactory,
         private readonly CustomerScopeResolver $scopeResolver,
         private readonly AddressFormatter $addressFormatter,
-    ) {}
+    ) {
+    }
 
     /**
      * @param string[]|null $street
@@ -53,20 +54,42 @@ class CustomerAddressUpdateTool
             $address->setCustomerId($resolvedCustomerId);
         }
 
-        if ($firstname !== null) { $address->setFirstname($firstname); }
-        if ($lastname !== null) { $address->setLastname($lastname); }
-        if ($street !== null) { $address->setStreet($street); }
-        if ($city !== null) { $address->setCity($city); }
-        if ($postcode !== null) { $address->setPostcode($postcode); }
-        if ($countryId !== null) { $address->setCountryId($countryId); }
-        if ($telephone !== null) { $address->setTelephone($telephone); }
-        if ($defaultBilling !== null) { $address->setIsDefaultBilling($defaultBilling); }
-        if ($defaultShipping !== null) { $address->setIsDefaultShipping($defaultShipping); }
+        if ($firstname !== null) {
+            $address->setFirstname($firstname);
+        }
+        if ($lastname !== null) {
+            $address->setLastname($lastname);
+        }
+        if ($street !== null) {
+            $address->setStreet($street);
+        }
+        if ($city !== null) {
+            $address->setCity($city);
+        }
+        if ($postcode !== null) {
+            $address->setPostcode($postcode);
+        }
+        if ($countryId !== null) {
+            $address->setCountryId($countryId);
+        }
+        if ($telephone !== null) {
+            $address->setTelephone($telephone);
+        }
+        if ($defaultBilling !== null) {
+            $address->setIsDefaultBilling($defaultBilling);
+        }
+        if ($defaultShipping !== null) {
+            $address->setIsDefaultShipping($defaultShipping);
+        }
 
         if ($regionId !== null || $region !== null) {
             $regionObj = $this->regionFactory->create();
-            if ($regionId !== null) { $regionObj->setRegionId($regionId); }
-            if ($region !== null) { $regionObj->setRegion($region); }
+            if ($regionId !== null) {
+                $regionObj->setRegionId($regionId);
+            }
+            if ($region !== null) {
+                $regionObj->setRegion($region);
+            }
             $address->setRegion($regionObj);
         }
 

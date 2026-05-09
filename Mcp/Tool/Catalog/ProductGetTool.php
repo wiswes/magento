@@ -12,7 +12,8 @@ class ProductGetTool
     public function __construct(
         private readonly ProductRepositoryInterface $productRepository,
         private readonly ConfigurableType $configurableType,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

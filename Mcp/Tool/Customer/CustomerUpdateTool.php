@@ -11,7 +11,8 @@ class CustomerUpdateTool
     public function __construct(
         private readonly CustomerRepositoryInterface $customerRepository,
         private readonly CustomerScopeResolver $scopeResolver,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

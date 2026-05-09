@@ -32,7 +32,8 @@ class ChatWidgetContext implements SectionSourceInterface
         private readonly CartManagementInterface $cartManagement,
         private readonly CartRepositoryInterface $cartRepository,
         private readonly CustomerIdSigner $customerIdSigner,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     public function getSectionData(): array

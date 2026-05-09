@@ -12,7 +12,8 @@ class CustomerAddressListTool
         private readonly CustomerRepositoryInterface $customerRepository,
         private readonly CustomerScopeResolver $scopeResolver,
         private readonly AddressFormatter $addressFormatter,
-    ) {}
+    ) {
+    }
 
     /** @return array{customer_id: int, addresses: list<array<string, mixed>>} */
     #[McpTool(

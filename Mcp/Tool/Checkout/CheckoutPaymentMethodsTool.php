@@ -22,7 +22,8 @@ class CheckoutPaymentMethodsTool
         private readonly CartManagementInterface $cartManagement,
         private readonly PaymentMethodManagementInterface $paymentMethodManagement,
         private readonly GuestPaymentMethodManagementInterface $guestPaymentMethodManagement,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

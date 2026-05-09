@@ -36,7 +36,8 @@ class McpUserContext implements UserContextInterface
         private readonly RequestContext $requestContext,
         private readonly TokenUserContextResolver $resolver,
         private readonly UserContextInterface $fallback,
-    ) {}
+    ) {
+    }
 
     public function getUserId(): ?int
     {

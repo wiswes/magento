@@ -16,7 +16,8 @@ class CartInfoTool
         private readonly CartManagementInterface $cartManagement,
         private readonly CartRepositoryInterface $cartRepository,
         private readonly CartTotalRepositoryInterface $totalsRepository,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

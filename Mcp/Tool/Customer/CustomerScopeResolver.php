@@ -36,7 +36,8 @@ class CustomerScopeResolver
      */
     public function __construct(
         private readonly McpUserContext $userContext,
-    ) {}
+    ) {
+    }
 
     public function resolve(?int $explicitId, string $toolName): int
     {

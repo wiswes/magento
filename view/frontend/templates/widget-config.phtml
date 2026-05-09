@@ -24,8 +24,8 @@ window.CHAT_WIDGET_CONFIG = window.CHAT_WIDGET_CONFIG || {};
 Object.assign(window.CHAT_WIDGET_CONFIG, {
     quoteId: <?= $inlineQuoteId > 0 ? (int) $inlineQuoteId : 'null' ?>,
     customerId: <?= (int) $inlineCustomerId ?>,
-    customerName: <?= json_encode($inlineCustomerName, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>,
-    customerSignature: <?= json_encode($inlineCustomerSig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>
+    customerName: <?= /* @noEscape */ json_encode($inlineCustomerName, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>,
+    customerSignature: <?= /* @noEscape */ json_encode($inlineCustomerSig, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>
 });
 <?php endif; ?>
 

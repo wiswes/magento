@@ -20,7 +20,8 @@ class OrderUpdateTool
         private readonly OrderStatusHistoryInterfaceFactory $historyFactory,
         private readonly McpUserContext $userContext,
         private readonly OrderInfoTool $orderInfoTool,
-    ) {}
+    ) {
+    }
 
     /**
      * @param array<string, mixed>|null $address
@@ -81,14 +82,30 @@ class OrderUpdateTool
             throw new \RuntimeException('Order has no shipping address (virtual order).');
         }
 
-        if (isset($addressData['firstname'])) { $shippingAddress->setFirstname($addressData['firstname']); }
-        if (isset($addressData['lastname'])) { $shippingAddress->setLastname($addressData['lastname']); }
-        if (isset($addressData['street'])) { $shippingAddress->setStreet($addressData['street']); }
-        if (isset($addressData['city'])) { $shippingAddress->setCity($addressData['city']); }
-        if (isset($addressData['region'])) { $shippingAddress->setRegion($addressData['region']); }
-        if (isset($addressData['postcode'])) { $shippingAddress->setPostcode($addressData['postcode']); }
-        if (isset($addressData['countryId'])) { $shippingAddress->setCountryId($addressData['countryId']); }
-        if (isset($addressData['telephone'])) { $shippingAddress->setTelephone($addressData['telephone']); }
+        if (isset($addressData['firstname'])) {
+            $shippingAddress->setFirstname($addressData['firstname']);
+        }
+        if (isset($addressData['lastname'])) {
+            $shippingAddress->setLastname($addressData['lastname']);
+        }
+        if (isset($addressData['street'])) {
+            $shippingAddress->setStreet($addressData['street']);
+        }
+        if (isset($addressData['city'])) {
+            $shippingAddress->setCity($addressData['city']);
+        }
+        if (isset($addressData['region'])) {
+            $shippingAddress->setRegion($addressData['region']);
+        }
+        if (isset($addressData['postcode'])) {
+            $shippingAddress->setPostcode($addressData['postcode']);
+        }
+        if (isset($addressData['countryId'])) {
+            $shippingAddress->setCountryId($addressData['countryId']);
+        }
+        if (isset($addressData['telephone'])) {
+            $shippingAddress->setTelephone($addressData['telephone']);
+        }
 
         $this->orderAddressRepository->save($shippingAddress);
     }

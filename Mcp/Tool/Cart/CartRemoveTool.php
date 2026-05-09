@@ -13,7 +13,8 @@ class CartRemoveTool
         private readonly CartRepositoryInterface $cartRepository,
         private readonly CartItemRepositoryInterface $cartItemRepository,
         private readonly CartInfoTool $cartInfoTool,
-    ) {}
+    ) {
+    }
 
     /** @return array<string, mixed> */
     #[McpTool(

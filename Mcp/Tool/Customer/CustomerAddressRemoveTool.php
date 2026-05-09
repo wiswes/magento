@@ -11,7 +11,8 @@ class CustomerAddressRemoveTool
     public function __construct(
         private readonly AddressRepositoryInterface $addressRepository,
         private readonly CustomerScopeResolver $scopeResolver,
-    ) {}
+    ) {
+    }
 
     /** @return array{success: bool, addressId: int} */
     #[McpTool(

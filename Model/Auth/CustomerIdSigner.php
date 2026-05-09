@@ -31,7 +31,8 @@ class CustomerIdSigner
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly EncryptorInterface $encryptor,
-    ) {}
+    ) {
+    }
 
     /**
      * Returns a signed token for the given customer id, or '' for guests
