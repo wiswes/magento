@@ -1,5 +1,5 @@
 {
-    "name": "wiswes/module-mcp",
+    "name": "wiswes/magento-mcp",
     "description": "WisWes MCP module for Magento 2 — exposes catalog, cart, checkout, customer, sales and wishlist tools to the WisWes shopping assistant via Model Context Protocol.",
     "type": "magento2-module",
     "homepage": "https://wiswes.com",

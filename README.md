@@ -17,7 +17,7 @@ The module ships:
 > **What this gives you:** the `Wes` chat persona on your storefront can read your live Magento data and act on the cart with no glue code. Shoppers ask questions in natural language, Wes calls the right tool, you ship more orders.
 
 - **Module name:** `WisWes_MCP`
-- **Composer package:** `wiswes/module-mcp`
+- **Composer package:** `wiswes/magento-mcp`
 - **Tested Magento versions:** 2.4.4, 2.4.5, 2.4.6, 2.4.7
 - **PHP:** 8.1 / 8.2 / 8.3
 
@@ -52,24 +52,14 @@ Pick one of the three install paths. Composer is recommended for production.
 ### Option A — Composer (recommended)
 
 ```bash
-composer require wiswes/module-mcp
+composer require wiswes/magento-mcp
 bin/magento module:enable WisWes_MCP
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento cache:flush
 ```
 
-If `composer require` fails with *Could not find a matching version*, the package isn't on Packagist yet. Add the GitHub source as a VCS repository:
-
-```json
-{
-  "repositories": [
-    { "type": "vcs", "url": "https://github.com/wiswes/magento" }
-  ]
-}
-```
-
-Then re-run `composer require wiswes/module-mcp:^1.0`.
+The package is published on [Packagist](https://packagist.org/packages/wiswes/magento-mcp). Pin a major line with `composer require wiswes/magento-mcp:^1.0`.
 
 ### Option B — Git clone
 
@@ -358,7 +348,7 @@ All settings live under **Stores → Configuration → WisWes Chat** (or via `bi
 
 ```bash
 # Composer
-composer update wiswes/module-mcp
+composer update wiswes/magento-mcp
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento cache:flush
@@ -383,7 +373,7 @@ bin/magento setup:di:compile
 bin/magento cache:flush
 
 # Composer
-composer remove wiswes/module-mcp
+composer remove wiswes/magento-mcp
 
 # Git / ZIP
 rm -rf app/code/WisWes/MCP
@@ -424,9 +414,11 @@ The runtime depends on `php-mcp/server`. Install it at your project root:
 composer require php-mcp/server
 ```
 
-### Composer can't find `wiswes/module-mcp`
+### Composer can't find a matching version of `wiswes/magento-mcp`
 
-Until the package is published to Packagist, install from the GitHub VCS source:
+Run `composer clear-cache`, then re-try `composer require wiswes/magento-mcp:^1.0`. Packagist refreshes its index within seconds of every tagged push, so this is almost always a stale local cache.
+
+To install from a feature branch that hasn't been tagged yet, add the GitHub source as a VCS repository in your `composer.json`:
 
 ```json
 {
