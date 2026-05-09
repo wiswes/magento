@@ -157,13 +157,15 @@ wiswes/magento-mcp
 > **Field:** Composer Package Version
 
 ```
-1.0.2
+1.0.3
 ```
 
 (v1.0.0 was tagged before the package rename to
 `wiswes/magento-mcp` and is not available on Packagist under the
-current name. v1.0.2 is the first stable that ships with the
-`.marketplace/` folder excluded from the dist archive.)
+current name. v1.0.3 is the first stable with the
+`version` field declared in composer.json — Adobe MEQP requires
+the explicit version even though Packagist normally derives it
+from the git tag.)
 
 > **Field:** Source repository URL
 
@@ -214,7 +216,7 @@ https://wiswes.com/terms
 
 ---
 
-## Release notes for v1.0.2
+## Release notes for v1.0.3
 
 > **Field:** Version release notes (max ~1500 chars)
 

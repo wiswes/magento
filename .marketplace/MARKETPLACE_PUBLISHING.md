@@ -8,8 +8,8 @@ Adobe Commerce Marketplace as a free extension.
 > ✅ Phase 1 — Technical readiness (PHPCS clean, secure serializer, no XSS)
 > ✅ Phase 1.5 — Admin UX (config XML already polished, no work required)
 > ✅ Phase 2 — Listing copy + icon assets staged in `.marketplace/`
-> ✅ Phase 4 — `v1.0.2` tagged + pushed; Packagist serves it as
->    `wiswes/magento-mcp:1.0.2` within ~60 seconds of the push.
+> ✅ Phase 4 — `v1.0.3` tagged + pushed; Packagist serves it as
+>    `wiswes/magento-mcp:1.0.3` within ~60 seconds of the push.
 >    (v1.0.0 predates the `wiswes/module-mcp` → `wiswes/magento-mcp`
 >    rename and is superseded — Packagist never indexed it under the
 >    current name.)
@@ -90,9 +90,9 @@ to point at if Adobe asks for source.
 
 ### 3.3 Tag is already in place
 
-`v1.0.2` was tagged from the current `main` of
+`v1.0.3` was tagged from the current `main` of
 `https://github.com/wiswes/magento` and is what Adobe will resolve
-to. Packagist publishes it as `wiswes/magento-mcp:1.0.2` within
+to. Packagist publishes it as `wiswes/magento-mcp:1.0.3` within
 ~60 seconds of the push (verify at
 https://packagist.org/packages/wiswes/magento-mcp).
 
@@ -114,7 +114,7 @@ Adobe's MEQP review wants either:
 - A **ZIP archive** of the source.
 
 Composer reference is simpler — once the Packagist tag is live,
-you just enter `wiswes/magento-mcp` and version `1.0.2` in the
+you just enter `wiswes/magento-mcp` and version `1.0.3` in the
 form.
 
 ### 3.5 Fill the submission form
@@ -142,7 +142,7 @@ In the Adobe Marketplace Developer Portal
 5. Upload screenshots from `.marketplace/screenshots/` with the
    captions from `SCREENSHOTS.md`.
 6. Enter the Composer package: `wiswes/magento-mcp` version
-   `1.0.2`.
+   `1.0.3`.
 7. Submit for review.
 
 ### 3.6 What to expect during review
@@ -183,7 +183,7 @@ Total wall time: **2–4 weeks** end to end for a first submission.
 ### 3.7 If they reject
 
 Each rejection comes with a written list of issues in the seller
-portal. Fix them in the repo, push a new patch tag (`v1.0.2`),
+portal. Fix them in the repo, push a new patch tag (`v1.0.3`),
 update the Composer version in the listing draft, and resubmit.
 
 The most common first-submission rejection reason is the icon —
