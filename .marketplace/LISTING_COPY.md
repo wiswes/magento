@@ -221,6 +221,27 @@ https://wiswes.com/install/magento
 
 ---
 
+## Privacy policy
+
+> **Field:** Privacy Policy URL (Adobe requires this on every listing)
+
+```
+https://wiswes.com/privacy
+```
+
+---
+
+## Terms & conditions
+
+> **Field:** Terms / EULA URL (Adobe shows this on the listing
+> alongside the privacy link)
+
+```
+https://wiswes.com/terms
+```
+
+---
+
 ## Release notes for v1.0.1
 
 > **Field:** Version release notes (max ~1500 chars)
