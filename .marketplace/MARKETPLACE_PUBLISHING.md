@@ -57,21 +57,28 @@ proper symbolic mark.
 
 ## Phase 3 — Step-by-step submission
 
-### 3.1 Create the Adobe Marketplace seller account
+### 3.1 Create the Adobe Marketplace developer account
 
 > **You must do this part — Claude is not allowed to create accounts
 > on your behalf.**
 
-1. Open https://commercemarketplace.adobe.com/seller-portal in a
-   browser signed into your `wes@wiswes.com` Adobe ID.
-2. Click **Become a Developer** → fill the company profile:
-   - **Legal name:** WisWes (or the entity you'll receive payouts
-     under — though for a free extension this still has to be filled)
-   - **Public seller name:** WisWes
-   - **Country / address:** your business address
-   - **Tax forms:** W-9 (US) or W-8BEN (non-US). Required even
-     for free extensions.
-3. Submit. Adobe usually approves within 1–3 business days.
+1. Open **https://commercedeveloper.adobe.com** (the Marketplace
+   Developer Portal — Adobe does *not* call this a "seller
+   portal"). Sign in with your `wes@wiswes.com` Adobe ID, or
+   click **Create Account** if there isn't one yet.
+2. Step through the onboarding wizard:
+   - **Personal info:** first name, last name, email, country.
+   - **Company description:** primary focus + your role.
+   - **Adobe ID password** (if creating new): 8–16 chars, must
+     include a capital, a number, and a special or lowercase.
+   - **Accept** the Commerce Marketplace Master Terms and the
+     Development Terms.
+   - **Account type:** select **Company** and use `WisWes`.
+   - **Profile:** address, tax form W-9 (US) or W-8BEN (non-US).
+     Required even for free extensions.
+3. Submit. Adobe usually approves within 1–3 business days. Once
+   approved, the **Extensions** page in the portal exposes the
+   **Add a Product** flow used in step 3.5.
 
 ### 3.2 Capture screenshots
 
@@ -112,9 +119,10 @@ form.
 
 ### 3.5 Fill the submission form
 
-In the Adobe Marketplace seller portal:
+In the Adobe Marketplace Developer Portal
+(`https://commercedeveloper.adobe.com`):
 
-1. **My Products** → **Submit New Product**
+1. **Extensions** → **Add a Product**
 2. Choose **Adobe Commerce / Magento Open Source extension**
 3. Paste from `.marketplace/LISTING_COPY.md`:
    - Extension name
