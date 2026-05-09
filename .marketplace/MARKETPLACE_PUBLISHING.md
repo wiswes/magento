@@ -8,11 +8,15 @@ Adobe Commerce Marketplace as a free extension.
 > ✅ Phase 1 — Technical readiness (PHPCS clean, secure serializer, no XSS)
 > ✅ Phase 1.5 — Admin UX (config XML already polished, no work required)
 > ✅ Phase 2 — Listing copy + icon assets staged in `.marketplace/`
+> ✅ Phase 4 — `v1.0.1` tagged + pushed; Packagist serves it as
+>    `wiswes/magento-mcp:1.0.1` within ~60 seconds of the push.
+>    (v1.0.0 predates the `wiswes/module-mcp` → `wiswes/magento-mcp`
+>    rename and is superseded — Packagist never indexed it under the
+>    current name.)
 > ⏳ Phase 3 — Adobe seller account + screenshots + submission
-> ⏳ Phase 4 — Tag `v1.0.0` on `wiswes/magento` repo
 
-The remaining steps need a human in front of the Adobe portal and a
-running Magento install for screenshots — **they cannot be automated.**
+Phase 3 needs a human in front of the Adobe portal and a running
+Magento install for screenshots — **it cannot be automated.**
 
 ---
 
@@ -77,18 +81,24 @@ Save them to `.marketplace/screenshots/` using the file names in
 that doc, then commit to the repo so the listing has a public URL
 to point at if Adobe asks for source.
 
-### 3.3 Tag v1.0.0 on the magento repo
+### 3.3 Tag is already in place
 
-Once screenshots are committed, cut the tag Adobe will resolve to:
+`v1.0.1` was tagged from the current `main` of
+`https://github.com/wiswes/magento` and is what Adobe will resolve
+to. Packagist publishes it as `wiswes/magento-mcp:1.0.1` within
+~60 seconds of the push (verify at
+https://packagist.org/packages/wiswes/magento-mcp).
+
+If you ship a fix during MEQP review, bump the patch version:
 
 ```bash
-cd /Users/serhiikovalenko/SITES/chat_ai/app/magento
-git tag -a v1.0.0 -m "WisWes Magento MCP v1.0.0 — initial Marketplace release"
-git push origin v1.0.0
+cd app/code/WisWes/MCP
+git tag -a v1.0.2 -m "Marketplace MEQP review fixes"
+git push origin v1.0.2
 ```
 
-Packagist auto-detects the tag and publishes
-`wiswes/magento-mcp:1.0.0` within ~60 seconds.
+Then update the Composer version field in the listing draft to
+match.
 
 ### 3.4 Build the submission package
 
@@ -124,7 +134,7 @@ In the Adobe Marketplace seller portal:
 5. Upload screenshots from `.marketplace/screenshots/` with the
    captions from `SCREENSHOTS.md`.
 6. Enter the Composer package: `wiswes/magento-mcp` version
-   `1.0.0`.
+   `1.0.1`.
 7. Submit for review.
 
 ### 3.6 What to expect during review

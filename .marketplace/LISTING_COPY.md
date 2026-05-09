@@ -186,8 +186,12 @@ wiswes/magento-mcp
 > **Field:** Composer Package Version
 
 ```
-1.0.0
+1.0.1
 ```
+
+(v1.0.0 was tagged before the package was renamed to
+`wiswes/magento-mcp` and is therefore not available on Packagist
+under the current name. v1.0.1 is the first valid stable.)
 
 > **Field:** Source repository URL
 
@@ -217,7 +221,7 @@ https://wiswes.com/install/magento
 
 ---
 
-## Release notes for v1.0.0
+## Release notes for v1.0.1
 
 > **Field:** Version release notes (max ~1500 chars)
 
