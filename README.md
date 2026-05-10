@@ -1,9 +1,9 @@
 # WisWes MCP for Magento 2
 
-[![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/wiswes/magento/releases)
+[![Version](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://github.com/wiswes/magento/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Magento](https://img.shields.io/badge/Magento-2.4.4%2B-orange.svg)](https://magento.com)
-[![PHP](https://img.shields.io/badge/PHP-8.1%20%7C%208.2%20%7C%208.3-777BB4.svg)](https://php.net)
+[![PHP](https://img.shields.io/badge/PHP-8.1%20%7C%208.2%20%7C%208.3%20%7C%208.4-777BB4.svg)](https://php.net)
 
 The official WisWes module for Magento 2. Plugs your store into the **WisWes** AI shopping assistant ([wiswes.com](https://wiswes.com)) over the **Model Context Protocol (MCP)**.
 
@@ -19,7 +19,7 @@ The module ships:
 - **Module name:** `WisWes_MCP`
 - **Composer package:** `wiswes/magento-mcp`
 - **Tested Magento versions:** 2.4.4, 2.4.5, 2.4.6, 2.4.7
-- **PHP:** 8.1 / 8.2 / 8.3
+- **PHP:** 8.1 / 8.2 / 8.3 / 8.4
 
 ---
 
@@ -66,7 +66,7 @@ The package is published on [Packagist](https://packagist.org/packages/wiswes/ma
 ```bash
 mkdir -p app/code/WisWes
 git clone https://github.com/wiswes/magento.git app/code/WisWes/MCP
-cd app/code/WisWes/MCP && git checkout v1.0.3 && cd -
+cd app/code/WisWes/MCP && git checkout v1.0.4 && cd -
 
 bin/magento module:enable WisWes_MCP
 bin/magento setup:upgrade
@@ -79,8 +79,8 @@ bin/magento cache:flush
 Download the archive from the [Releases page](https://github.com/wiswes/magento/releases/latest) and unzip into your Magento root:
 
 ```bash
-unzip ~/Downloads/wiswes-magento-1.0.3.zip -d .
-mkdir -p app/code/WisWes && mv wiswes-magento-1.0.3 app/code/WisWes/MCP
+unzip ~/Downloads/wiswes-magento-1.0.4.zip -d .
+mkdir -p app/code/WisWes && mv wiswes-magento-1.0.4 app/code/WisWes/MCP
 
 bin/magento module:enable WisWes_MCP
 bin/magento setup:upgrade

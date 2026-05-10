@@ -83,7 +83,7 @@ Full pricing detail at [wiswes.com/#pricing](https://wiswes.com/#pricing).
 ### Compatibility
 
 - Magento Open Source and Adobe Commerce 2.4.4, 2.4.5, 2.4.6, 2.4.7
-- PHP 8.1, 8.2, 8.3
+- PHP 8.1, 8.2, 8.3, 8.4
 - Default themes and [Hyvä](https://www.hyva.io)-themed stores
 - Storefront widget is a single `<script>` tag inserted via Magento's native HTML Head config — no theme template edits
 
@@ -108,7 +108,7 @@ Full pricing detail at [wiswes.com/#pricing](https://wiswes.com/#pricing).
 - Customer-aware: logged-in shoppers' carts and orders are private to them
 - Drop-in custom tools via `#[McpTool]` PHP attribute
 - Bearer-auth + Magento `LocalizedException` boundary — no leaked stack traces
-- Magento 2.4.4–2.4.7 / PHP 8.1–8.3 / Hyvä compatible
+- Magento 2.4.4–2.4.7 / PHP 8.1–8.4 / Hyvä compatible
 - GPL-3.0 — full source on GitHub
 - Free forever; no in-extension paywall
 
@@ -157,7 +157,7 @@ wiswes/magento-mcp
 > **Field:** Composer Package Version
 
 ```
-1.0.3
+1.0.4
 ```
 
 (v1.0.0 was tagged before the package rename to
@@ -216,7 +216,7 @@ https://wiswes.com/terms
 
 ---
 
-## Release notes for v1.0.3
+## Release notes for v1.0.4
 
 > **Field:** Version release notes (max ~1500 chars)
 
@@ -229,7 +229,7 @@ Initial public release.
 - Nightly catalogue push to the WisWes vector index for semantic product search.
 - Customer-scoped tools forward Magento's standard customer bearer token.
 - Custom tools via the #[McpTool] PHP attribute — drop a class into Mcp/Tool/ to expose new capabilities.
-- Magento 2.4.4–2.4.7 compatible, PHP 8.1/8.2/8.3.
+- Magento 2.4.4–2.4.7 compatible, PHP 8.1/8.2/8.3/8.4.
 - Passes phpcs --standard=Magento2 with 0 errors.
 ```
 
