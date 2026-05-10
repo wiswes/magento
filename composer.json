@@ -2,7 +2,7 @@
     "name": "wiswes/magento-mcp",
     "description": "WisWes MCP module for Magento 2 — exposes catalog, cart, checkout, customer, sales and wishlist tools to the WisWes shopping assistant via Model Context Protocol.",
     "type": "magento2-module",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "homepage": "https://wiswes.com",
     "license": "GPL-3.0-or-later",
     "support": {
@@ -18,11 +18,7 @@
         "php-mcp/server": "^3.0"
     },
     "replace": {
-        "react/http": "*",
-        "react/socket": "*",
-        "react/promise": "*",
-        "react/event-loop": "*",
-        "react/stream": "*"
+        "react/http": "*"
     },
     "autoload": {
         "files": [
