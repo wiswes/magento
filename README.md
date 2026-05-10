@@ -1,6 +1,6 @@
 # WisWes MCP for Magento 2
 
-[![Version](https://img.shields.io/badge/version-1.0.5-blue.svg)](https://github.com/wiswes/magento/releases)
+[![Version](https://img.shields.io/badge/version-1.0.6-blue.svg)](https://github.com/wiswes/magento/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Magento](https://img.shields.io/badge/Magento-2.4.4%2B-orange.svg)](https://magento.com)
 [![PHP](https://img.shields.io/badge/PHP-8.1%20%7C%208.2%20%7C%208.3%20%7C%208.4-777BB4.svg)](https://php.net)
@@ -66,7 +66,7 @@ The package is published on [Packagist](https://packagist.org/packages/wiswes/ma
 ```bash
 mkdir -p app/code/WisWes
 git clone https://github.com/wiswes/magento.git app/code/WisWes/MCP
-cd app/code/WisWes/MCP && git checkout v1.0.5 && cd -
+cd app/code/WisWes/MCP && git checkout v1.0.6 && cd -
 
 bin/magento module:enable WisWes_MCP
 bin/magento setup:upgrade
@@ -79,8 +79,8 @@ bin/magento cache:flush
 Download the archive from the [Releases page](https://github.com/wiswes/magento/releases/latest) and unzip into your Magento root:
 
 ```bash
-unzip ~/Downloads/wiswes-magento-1.0.5.zip -d .
-mkdir -p app/code/WisWes && mv wiswes-magento-1.0.5 app/code/WisWes/MCP
+unzip ~/Downloads/wiswes-magento-1.0.6.zip -d .
+mkdir -p app/code/WisWes && mv wiswes-magento-1.0.6 app/code/WisWes/MCP
 
 bin/magento module:enable WisWes_MCP
 bin/magento setup:upgrade

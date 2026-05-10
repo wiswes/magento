@@ -5,7 +5,6 @@ namespace WisWes\MCP\Service;
 
 use WisWes\MCP\Model\Auth\RequestContext;
 use WisWes\MCP\Model\Tool\RouteToolBuilder;
-use WisWes\MCP\Model\Transport\BearerTokenCapturingTransport;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use PhpMcp\Server\Server;
 use Psr\Log\LoggerInterface;
@@ -41,16 +40,6 @@ class McpServerBuilder
         private readonly ?CacheInterface $stateCache = null,
         private readonly array $customTools = [],
     ) {
-    }
-
-    public function buildTransport(string $host, int $port, string $prefix): BearerTokenCapturingTransport
-    {
-        return new BearerTokenCapturingTransport(
-            requestContext: $this->requestContext,
-            host: $host,
-            port: $port,
-            mcpPath: '/' . ltrim($prefix, '/'),
-        );
     }
 
     public function buildServer(string $name, string $version): Server

@@ -157,7 +157,7 @@ wiswes/magento-mcp
 > **Field:** Composer Package Version
 
 ```
-1.0.5
+1.0.6
 ```
 
 (v1.0.0 was tagged before the package rename to
@@ -216,7 +216,7 @@ https://wiswes.com/terms
 
 ---
 
-## Release notes for v1.0.5
+## Release notes for v1.0.6
 
 > **Field:** Version release notes (max ~1500 chars)
 
